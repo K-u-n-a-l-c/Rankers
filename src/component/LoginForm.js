@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 //import { Container, Grid, Paper, TextField, Button } from '@mui/material';
 // import './style.css';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components'
 
 
 function LoginForm() {
+
+	//Forgot Password
+	const Navigate = useNavigate();
 
 	//Sliding window
 	const [active,setActive]=useState(false)	
@@ -85,7 +89,7 @@ function LoginForm() {
                   
                   <input type="text" name ="rNum" onChange={vale} placeholder="Registration Number" />
                   <input type="password" name ="pass" onChange={vale} placeholder="Password" />
-                  <a href="/Forgotpassword">Forgot your password?</a>
+                  <a href="" onClick={() => Navigate('/Forgotpassword')}>Forgot your password?</a>
                   <button onClick = { handleChange } >Sign In</button>
                   <button id="sign" onClick ={ Change } >Sign Up</button>
               </form>
