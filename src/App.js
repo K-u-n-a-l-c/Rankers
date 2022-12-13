@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from 'react';
 import "./component/LoginForm"
 import LoginForm from './component/LoginForm';
-import RegisterForm from "./component/RegisterForm";
+import ForgotPass from "./component/ForgotPass";
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
       <Routes>
       <Route  exact path="/" element={<LoginForm />}/>
           <Route path="/LoginForm" element={<LoginForm />}/>
-          <Route path="/RegisterForm" element={<RegisterForm/>} />
+          <Route path="/Forgotpassword" element={<ForgotPass/>} />
       </Routes>
     </BrowserRouter>
     </div>

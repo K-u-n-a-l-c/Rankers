@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 function LoginForm() {
 
-	//Sliding bar
+	//Sliding window
 	const [active,setActive]=useState(false)	
     
     const Change=()=>{
@@ -23,7 +23,7 @@ function LoginForm() {
     })
 	console.log(newuser);
 
-	const val =(e) => {
+	const val = (e) => {
 		const {value, name} = e.target;
 		//console.log(value,name);
 		setNewUser (()=>{
@@ -41,7 +41,7 @@ function LoginForm() {
     })
 	console.log(user);
 
-	const vale =(e) => {
+	const vale = (e) => {
 		const {value, name} = e.target;
 		//console.log(value,name);
 		setUser (()=>{
@@ -52,9 +52,11 @@ function LoginForm() {
 		})
 	}
 
+	//SignUp button
 	const handlChange = (e) => {
         e.preventDefault();
     }
+	//SignIn button
 	const handleChange = (e) => {
         e.preventDefault();
     }
@@ -83,7 +85,7 @@ function LoginForm() {
                   
                   <input type="text" name ="rNum" onChange={vale} placeholder="Registration Number" />
                   <input type="password" name ="pass" onChange={vale} placeholder="Password" />
-                  <a href="#">Forgot your password?</a>
+                  <a href="/Forgotpassword">Forgot your password?</a>
                   <button onClick = { handleChange } >Sign In</button>
                   <button id="sign" onClick ={ Change } >Sign Up</button>
               </form>
