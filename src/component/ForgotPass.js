@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Container, Grid, Paper, TextField, Button } from '@mui/material';
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
+import axios from "axios"
 
 function RegisterForm() {
 
@@ -27,6 +28,16 @@ function RegisterForm() {
 	}
     const handleChange = (e) => {
         e.preventDefault();
+		const {rNum, dob, pass} = newuser
+		if(rNum && dob && pass){
+			axios.post("http://localhost:9002/forgot", newuser)
+			.then( res => {
+                alert(res.data.message)
+				Navigate('/LoginForm')
+            })
+		} else {
+			alert("Invalid Input")
+		}
     }
 
 

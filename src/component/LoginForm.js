@@ -1,13 +1,13 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 //import { Container, Grid, Paper, TextField, Button } from '@mui/material';
 // import './style.css';
 import { useNavigate } from 'react-router-dom';
-
 import styled from 'styled-components'
 
 
-function LoginForm() {
+const LoginForm = ({setLoginUser}) => {
 
 	//Forgot Password
 	const Navigate = useNavigate();
@@ -15,7 +15,8 @@ function LoginForm() {
 	//Sliding window
 	const [active,setActive]=useState(false)	
     
-    const Change=()=>{
+    const Change=(e)=>{
+		e.preventDefault()
         setActive(!active)
     }
 
@@ -25,9 +26,10 @@ function LoginForm() {
         dob:"",
         pass:""
     })
-	console.log(newuser);
+	//console.log(newuser);
 
 	const val = (e) => {
+		e.preventDefault()
 		const {value, name} = e.target;
 		//console.log(value,name);
 		setNewUser (()=>{
@@ -38,14 +40,31 @@ function LoginForm() {
 		})
 	}
 
+	//SignUp button
+	const handlChange = (e) => {
+        e.preventDefault()
+		const {rNum, dob, pass} = newuser
+		if(rNum && dob && pass){
+			axios.post("http://localhost:9002/register", newuser)
+			.then( res => {
+                alert(res.data.message)
+				Navigate('/LoginForm')
+            })
+		} else {
+			alert("Invalid Input")
+		}
+		
+    }
+
 	//SignIn
 	const [ user, setUser] = useState ({
         rNum:"",
         pass:""
     })
-	console.log(user);
+	//console.log(user);
 
 	const vale = (e) => {
+		e.preventDefault()
 		const {value, name} = e.target;
 		//console.log(value,name);
 		setUser (()=>{
@@ -56,13 +75,21 @@ function LoginForm() {
 		})
 	}
 
-	//SignUp button
-	const handlChange = (e) => {
-        e.preventDefault();
-    }
+	
 	//SignIn button
 	const handleChange = (e) => {
-        e.preventDefault();
+		e.preventDefault()
+        const {rNum, pass} = user
+		if(rNum && pass){
+			axios.post("http://localhost:9002/login", user)
+			.then(res => {
+				alert(res.data.message)
+				setLoginUser(res.data.user)
+				Navigate('/')
+			})
+		} else {
+			alert("Invalid Input")
+		}
     }
 
   return (

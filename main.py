@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
+import sys
+import json
+import ast
 
 
 login_url = ('http://103.70.61.125/iiit-ranchi-result')
@@ -12,7 +15,10 @@ payload = {
 'dob' : '25122003' , 
 'requestID' : 'Submit'
 }
-html_text = requests.post(login_url, data=payload).text
+try:
+    html_text = requests.post(login_url, data=payload, timeout=5).text
+except requests.exceptions.ReadTimeout:
+    print('Timed Out')
 soup = BeautifulSoup(html_text, 'lxml')
 result = soup.find('table', class_ = 'table table-hover table-striped').text
 name = soup.find('span', id = 'Label1').text
