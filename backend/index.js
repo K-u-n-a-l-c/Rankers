@@ -30,9 +30,9 @@ const updateDocument = async (_id, pass) => {
                 pass:pass
             }
         })
-        console.log(result)
+        //console.log(result)
     } catch (err){
-        console.log(err)
+        //console.log(err)
     }
 }
 

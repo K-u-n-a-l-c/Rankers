@@ -1,10 +1,16 @@
 import React from 'react'
 
 const Homepage = ({setLoginUser}) => {
+
+    const handlechange = () =>{
+        setLoginUser({})
+        window.localStorage.removeItem("isLoggedIn")
+    }
+
     return (
         <div className="homepage">
             <h1>Hello Homepage</h1>
-            <button className="button" onClick={() => setLoginUser({})} >Logout</button>
+            <button onClick={handlechange} >Logout</button>
         </div>
     )
 }

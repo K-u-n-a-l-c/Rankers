@@ -48,7 +48,7 @@ const LoginForm = ({setLoginUser}) => {
 			axios.post("http://localhost:9002/register", newuser)
 			.then( res => {
                 alert(res.data.message)
-				Navigate('/LoginForm')
+				window.location.reload();
             })
 		} else {
 			alert("Invalid Input")
@@ -84,7 +84,11 @@ const LoginForm = ({setLoginUser}) => {
 			axios.post("http://localhost:9002/login", user)
 			.then(res => {
 				alert(res.data.message)
-				setLoginUser(res.data.user)
+				if(res.data.user)
+				{
+					setLoginUser(res.data.user)
+					window.localStorage.setItem("isLoggedIn", true);
+				}
 				Navigate('/')
 			})
 		} else {

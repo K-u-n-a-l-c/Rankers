@@ -8,6 +8,7 @@ import Homepage from './component/homepage';
 
 function App() {
 
+  const loggedIn = window.localStorage.getItem("isLoggedIn")
   const [ user, setLoginUser] = useState({
       rNum:"",
       dob:"",
@@ -22,7 +23,7 @@ function App() {
       
       <BrowserRouter>
       <Routes>
-      <Route exact path="/" element={user && user._id ? <Homepage setLoginUser={setLoginUser}/> : <LoginForm setLoginUser={setLoginUser}/>}/> 
+      <Route exact path="/" element={((user && user._id) || loggedIn) ? <Homepage setLoginUser={setLoginUser}/> : <LoginForm setLoginUser={setLoginUser}/>}/> 
           <Route path="/LoginForm" element={<LoginForm setLoginUser={setLoginUser}/>}/>
           <Route path="/Forgotpassword" element={<ForgotPass/>} />
       </Routes>
